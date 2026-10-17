@@ -2,7 +2,7 @@
 title: "Combining Deep Learning and Hydrological Analysis for Identifying Check Dam Systems from Remote Sensing Images and DEMs in the Yellow River Basin"
 date: 2023-03-01 00:00:00 +0000
 cover: /assets/images/covers/2023-check-dam.jpg
-selected: false
+selected: true
 pub: "International Journal of Environmental Research and Public Health"
 pub_date: "2023"
 abstract: >-
