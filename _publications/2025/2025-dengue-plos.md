@@ -1,6 +1,7 @@
 ---
 title: "Unraveling Varying Spatiotemporal Patterns of Dengue Fever and Associated Exposure-Response Relationships with Environmental Variables in Three Southeast Asian Countries Before and During COVID-19"
 date: 2025-04-01 00:00:00 +0000
+cover: /assets/images/covers/2025-dengue-plos.jpg
 selected: false
 pub: "PLOS Neglected Tropical Diseases"
 pub_date: "2025"

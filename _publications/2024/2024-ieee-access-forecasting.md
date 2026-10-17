@@ -1,6 +1,7 @@
 ---
 title: "Evaluation of Different Deep Learning Methods for Meteorological Element Forecasting"
 date: 2024-06-01 00:00:00 +0000
+cover: /assets/images/covers/2024-ieee-access-forecasting.jpg
 selected: false
 pub: "IEEE Access"
 pub_date: "2024"

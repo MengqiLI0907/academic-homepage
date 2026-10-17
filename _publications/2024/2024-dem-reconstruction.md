@@ -1,6 +1,7 @@
 ---
 title: "Reconstructing High-Resolution DEMs from 3D Terrain Features using Conditional Generative Adversarial Networks"
 date: 2024-06-01 00:00:00 +0000
+cover: /assets/images/covers/2024-dem-reconstruction.jpg
 selected: true
 pub: "International Journal of Applied Earth Observation and Geoinformation"
 pub_date: "2024"
@@ -11,6 +12,7 @@ authors:
   - W. Dai
   - G. Wang
   - B. Wang
+  - K. Chen
   - Y. Gao
   - S. O. Y. Amankwah
 links:

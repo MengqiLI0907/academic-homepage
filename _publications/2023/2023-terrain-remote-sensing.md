@@ -1,6 +1,7 @@
 ---
 title: "Integrating Topographic Skeleton into Deep Learning for Terrain Reconstruction from GDEM and Google Earth Image"
 date: 2023-09-01 00:00:00 +0000
+cover: /assets/images/covers/2023-terrain-remote-sensing.jpg
 selected: false
 pub: "Remote Sensing"
 pub_date: "2023"
