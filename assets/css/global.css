@@ -1,6 +1,6 @@
 @charset "utf-8";
 body {
-    font-family: "Lato", sans-serif;
+    font-family: "Palatino Linotype", Palatino, "Book Antiqua", "URW Palladio L", "TeX Gyre Pagella", Georgia, serif;
     font-weight: 400;
     padding-top: 5.0rem;
 }
