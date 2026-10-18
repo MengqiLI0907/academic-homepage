@@ -97,17 +97,22 @@ div.lazy {
     top: 80px;
     max-height: calc(100vh - 90px);
     overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none;
 }
 
 .sidebar-portrait {
-    max-width: 150px;
+    max-width: 120px;
     width: 100%;
 }
 
 .sidebar-nav .nav-link {
     color: #6c757d;
-    font-size: 1rem;
-    padding: 0.4rem 0.9rem;
+    font-size: 0.95rem;
+    padding: 0.3rem 0.9rem;
     margin-bottom: 0.1rem;
     border-radius: 0.6rem;
 }
