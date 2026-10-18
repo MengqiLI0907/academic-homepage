@@ -189,17 +189,27 @@ div.lazy {
     white-space: nowrap;
 }
 
+.travel-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem 1.4rem;
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: #86868b;
+}
+
 .travel-legend span {
-    margin-right: 1rem;
     white-space: nowrap;
 }
 
 .travel-swatch {
     display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 2px;
-    margin-right: 4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: 1px;
 }
 
 .visitor-map a {
@@ -212,30 +222,186 @@ div.lazy {
     overflow-y: auto;
 }
 
-/* Showcase photos: masonry-style columns that keep each photo's own aspect ratio */
-.photo-columns {
-    column-count: 3;
-    column-gap: 1rem;
+/* Showcase photos: bento grid (big = 2x2, tall = 1x2, wide = 2x1) */
+.bento {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 180px;
+    grid-auto-flow: dense;
+    gap: 14px;
 }
 
-.photo-item {
-    break-inside: avoid;
-    margin-bottom: 1rem;
-    border-radius: 0.6rem;
+.bento-tile {
+    position: relative;
+    margin: 0;
     overflow: hidden;
+    border-radius: 22px;
+    background: #f5f5f7;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.photo-item img {
+.bento-tile:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Showcase: Apple-style sections */
+.apple-section {
+    padding: 2.5rem 2.5rem 2.75rem;
+    background: #fff;
+    border-radius: 28px;
+}
+
+.apple-heading {
+    margin-bottom: 1.5rem;
+}
+
+.apple-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.apple-segmented {
+    display: inline-flex;
+    padding: 3px;
+    margin-right: 0.4rem;
+    background: #f5f5f7;
+    border-radius: 999px;
+}
+
+.apple-segmented button {
+    border: 0;
+    padding: 0.3rem 1rem;
+    font-size: 0.85rem;
+    color: #1d1d1f;
+    background: transparent;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.apple-segmented button.active {
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+    font-weight: 600;
+}
+
+.apple-icon-btn {
+    width: 32px;
+    height: 32px;
+    border: 0;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    color: #1d1d1f;
+    background: #f5f5f7;
+    cursor: pointer;
+}
+
+.apple-icon-btn:hover,
+.apple-segmented button:hover {
+    color: #0071e3;
+}
+
+.apple-tile {
+    padding: 1.5rem 1.5rem 1.25rem;
+    background: #f5f5f7;
+    border-radius: 22px;
+}
+
+.apple-heading h2 {
+    margin: 0;
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #1d1d1f;
+}
+
+.apple-heading p {
+    margin: 0.25rem 0 0;
+    font-size: 1.1rem;
+    color: #86868b;
+}
+
+.bento-big { grid-column: span 2; grid-row: span 2; }
+.bento-tall { grid-row: span 2; }
+.bento-wide { grid-column: span 2; }
+
+.bento-tile p {
+    margin: 0;
+}
+
+.bento-tile img {
+    position: absolute;
+    inset: 0;
     display: block;
-    transition: transform 0.3s;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--focus, center 35%);
+    cursor: zoom-in;
+    transition: transform 0.5s ease, filter 0.5s ease;
 }
 
-.photo-item:hover img {
-    transform: scale(1.03);
+.bento-tile::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.25), transparent 40%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.bento-tile:hover img {
+    transform: scale(1.04);
+}
+
+.bento-tile:hover::after {
+    opacity: 1;
+}
+
+.bento-tile figcaption {
+    position: absolute;
+    left: 14px;
+    bottom: 10px;
+    z-index: 1;
+    color: #fff;
+    font-size: 0.9rem;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 @media (max-width: 767.98px) {
-    .photo-columns {
-        column-count: 2;
+    .apple-section {
+        padding: 1.5rem 1rem;
     }
+
+    .bento {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 140px;
+        gap: 8px;
+    }
+}
+
+.photo-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(250, 250, 252, 0.72);
+    backdrop-filter: blur(24px) saturate(1.4);
+    -webkit-backdrop-filter: blur(24px) saturate(1.4);
+    cursor: zoom-out;
+}
+
+.photo-lightbox.open {
+    display: flex;
+}
+
+.photo-lightbox img {
+    max-width: 92vw;
+    max-height: 90vh;
+    border-radius: 22px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
 }

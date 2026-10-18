@@ -3,5 +3,8 @@ show: true
 width: 4
 date: 2026-06-03 00:00:00 +0800
 group: Life
+tile: wide
+order: 4
+focus: center 75%
 ---
 <img src="{{ 'assets/images/etc/life6.jpg' | relative_url }}" loading="lazy" class="w-100" alt="Life photo 6">

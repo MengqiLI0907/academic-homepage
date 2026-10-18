@@ -16,6 +16,16 @@ us_states:
 - name: Illinois
   note: Chicago
 - name: Delaware
+- name: Maryland
+  shade: 1   # colour index within the family; set by hand so neighbouring states differ
+- name: New Jersey
+  shade: 1
+- name: Vermont
+  shade: 2
+- name: New Hampshire
+  shade: 3
+- name: West Virginia
+  shade: 0
 
 china_provinces:
 - name: Beijing
@@ -54,3 +64,4 @@ europe_countries:
 
 asia_countries:
 - name: Cambodia
+- name: Qatar

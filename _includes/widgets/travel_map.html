@@ -1,28 +1,31 @@
 {% assign travel = site.data.travel %}
-<div class="my-3 bg-white shadow-sm rounded-xl">
-    <h6 class="p-3 mb-0 border-bottom border-gray d-flex align-items-center">
-        <span><i class="fa-solid fa-earth-americas"></i> Places I Have Been</span>
-        <span class="ml-auto">
-            <span class="btn-group btn-group-sm mr-2" role="group">
-                <button type="button" class="btn btn-light" data-travel-view="map">Map</button>
-                <button type="button" class="btn btn-light active" data-travel-view="globe">Globe</button>
+<section class="apple-section my-3">
+    <div class="apple-heading d-flex flex-wrap align-items-end">
+        <div>
+            <h2>Places.</h2>
+            <p>Where curiosity has taken me so far.</p>
+        </div>
+        <div class="ml-auto apple-controls">
+            <span class="apple-segmented" role="group">
+                <button type="button" data-travel-view="globe" class="active">Globe</button>
+                <button type="button" data-travel-view="map">Map</button>
             </span>
-            <button type="button" class="btn btn-sm btn-light" id="travel-zoom-in" title="Zoom in"><i class="fa-solid fa-plus"></i></button>
-            <button type="button" class="btn btn-sm btn-light" id="travel-zoom-out" title="Zoom out"><i class="fa-solid fa-minus"></i></button>
-            <button type="button" class="btn btn-sm btn-light" id="travel-zoom-reset" title="Reset"><i class="fa-solid fa-rotate-left"></i></button>
-        </span>
-    </h6>
-    <div class="p-3">
+            <button type="button" class="apple-icon-btn" id="travel-zoom-in" title="Zoom in"><i class="fa-solid fa-plus"></i></button>
+            <button type="button" class="apple-icon-btn" id="travel-zoom-out" title="Zoom out"><i class="fa-solid fa-minus"></i></button>
+            <button type="button" class="apple-icon-btn" id="travel-zoom-reset" title="Reset"><i class="fa-solid fa-rotate-left"></i></button>
+        </div>
+    </div>
+    <div class="apple-tile">
         <div id="travel-map" class="travel-map"></div>
-        <div class="travel-legend small text-muted mt-2">
+        <div class="travel-legend">
             <span><i class="travel-swatch" style="background:#2f6db3"></i>United States</span>
             <span><i class="travel-swatch" style="background:#7b5ea7"></i>Canada</span>
             <span><i class="travel-swatch" style="background:#2a9d7f"></i>Europe</span>
             <span><i class="travel-swatch" style="background:#d9622b"></i>China</span>
-            <span><i class="travel-swatch" style="background:#d4a017"></i>Southeast Asia</span>
+            <span><i class="travel-swatch" style="background:#d4a017"></i>Other Asia</span>
         </div>
     </div>
-</div>
+</section>
 
 <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
@@ -31,7 +34,8 @@ document.addEventListener("DOMContentLoaded", function () {
     var visited = {
         europe: {{ travel.europe_countries | map: "name" | jsonify }},
         asia: {{ travel.asia_countries | map: "name" | jsonify }},
-        states: {{ travel.us_states | map: "name" | jsonify }}
+        states: {{ travel.us_states | map: "name" | jsonify }},
+        stateShades: {{ travel.us_states | map: "shade" | jsonify }}
     };
     // Colour family per group; members get alternating shades so neighbours stay distinguishable
     var families = {
@@ -90,7 +94,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         topojson.feature(data[1], data[1].objects.states).features.forEach(function (d) {
             var i = visited.states.indexOf(d.properties.name);
-            if (i >= 0) regions.push(Object.assign(d, { group: "us", rank: i }));
+            var shadeIndex = visited.stateShades[i];
+            if (i >= 0) regions.push(Object.assign(d, { group: "us", rank: shadeIndex == null ? i : shadeIndex }));
         });
         data[2].features.forEach(function (d, i) {
             regions.push(Object.assign(d, { group: d.properties.country === "Canada" ? "canada" : "china", rank: i }));
@@ -105,6 +110,11 @@ document.addEventListener("DOMContentLoaded", function () {
             .attr("fill", function (d) { return shade(d.group, d.rank); }).attr("stroke", "#ffffff")
             .call(hover);
 
+        // Very small places (e.g. Hong Kong, Vatican, Washington D.C.) get a same-colour outline so they stay visible
+        var flatPath = d3.geoPath(flat);
+        filled.classed("tiny", function (d) { return flatPath.area(d) < 8; })
+            .filter(".tiny").style("stroke", function (d) { return shade(d.group, d.rank); });
+
         function draw() {
             path = d3.geoPath(projection);
             sphere.attr("d", path); graticule.attr("d", path); land.attr("d", path); filled.attr("d", path);
@@ -114,7 +124,8 @@ document.addEventListener("DOMContentLoaded", function () {
         var zoom = d3.zoom().scaleExtent([1, 40]).translateExtent([[0, 0], [width, height]])
             .on("zoom", function (event) {
                 g.attr("transform", event.transform);
-                g.selectAll("path").attr("stroke-width", 0.5 / event.transform.k);
+                g.selectAll("path").style("stroke-width", 0.5 / event.transform.k);
+                g.selectAll("path.tiny").style("stroke-width", 3 / event.transform.k);
             });
         // Globe: drag to rotate, slow auto-spin
         var drag = d3.drag().on("start", function () { stopSpin(); })
@@ -138,7 +149,8 @@ document.addEventListener("DOMContentLoaded", function () {
             d3.selectAll("[data-travel-view]").classed("active", function () { return this.getAttribute("data-travel-view") === m; });
             d3.selectAll("#travel-zoom-in, #travel-zoom-out").style("display", m === "map" ? null : "none");
             svg.on(".zoom", null).on(".drag", null);
-            g.attr("transform", null).selectAll("path").attr("stroke-width", null);
+            g.attr("transform", null).selectAll("path").style("stroke-width", null);
+            g.selectAll("path.tiny").style("stroke-width", 3);
             if (m === "map") {
                 stopSpin(); projection = flat;
                 svg.call(zoom).on("wheel.zoom", null).call(zoom.transform, d3.zoomIdentity);

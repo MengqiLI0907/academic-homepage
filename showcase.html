@@ -7,15 +7,37 @@ container_class: container-xl
 
 {% include widgets/travel_map.html %}
 
-{% assign cards_by_group = site.showcase | sort: "date" | reverse | where: "show", true | group_by_exp: "item", "item.group" %}
+{% assign cards_by_group = site.showcase | sort: "order" | where: "show", true | group_by_exp: "item", "item.group" %}
 
 {% for group in cards_by_group %}
-<div class="my-3 bg-white shadow-sm rounded-xl">
-    <h6 class="p-3 mb-0 border-bottom border-gray"><i class="fa-solid fa-camera"></i> {{ group.name }}</h6>
-    <div class="p-3 photo-columns">
+<section class="apple-section my-3">
+    <div class="apple-heading">
+        <h2>{{ group.name }}.</h2>
+        <p>Moments from the road, the mountains, and everything in between.</p>
+    </div>
+    <div class="bento">
         {% for item in group.items %}
-        <div class="photo-item">{{ item.content }}</div>
+        <figure class="bento-tile bento-{{ item.tile | default: 'square' }}"{% if item.focus %} style="--focus: {{ item.focus }};"{% endif %}>
+            {{ item.content }}
+            {% if item.caption %}<figcaption>{{ item.caption }}</figcaption>{% endif %}
+        </figure>
         {% endfor %}
     </div>
-</div>
+</section>
 {% endfor %}
+
+<!-- Full-size photo viewer -->
+<div id="photo-lightbox" class="photo-lightbox" aria-hidden="true"><img alt=""></div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var box = document.getElementById("photo-lightbox"), big = box.querySelector("img");
+        document.querySelectorAll(".bento-tile img").forEach(function (img) {
+            img.addEventListener("click", function () {
+                big.src = img.currentSrc || img.src; big.alt = img.alt;
+                box.classList.add("open");
+            });
+        });
+        box.addEventListener("click", function () { box.classList.remove("open"); });
+        document.addEventListener("keydown", function (e) { if (e.key === "Escape") box.classList.remove("open"); });
+    });
+</script>
