@@ -201,3 +201,7 @@ div.lazy {
     border-radius: 2px;
     margin-right: 4px;
 }
+
+.visitor-map a {
+    cursor: default;
+}

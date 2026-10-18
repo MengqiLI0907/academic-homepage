@@ -25,14 +25,6 @@ body_attr: >-
         </section>
         {% endif %}
 
-        <section id="education" class="page-section">
-            {% include widgets/experience_card.html section="education" title='<i class="fa-solid fa-graduation-cap"></i> Education' %}
-        </section>
-
-        <section id="experience" class="page-section">
-            {% include widgets/experience_card.html section="experience" title='<i class="fa-solid fa-briefcase"></i> Experience' %}
-        </section>
-
         <section id="publications" class="page-section">
             {% assign pubs = site.publications | sort: "date" | reverse | where: "selected", true %}
             {%
@@ -41,6 +33,15 @@ body_attr: >-
                 title='<i class="fa-regular fa-file-lines"></i> Selected Publications'
             %}
         </section>
+
+        <section id="education" class="page-section">
+            {% include widgets/experience_card.html section="education" title='<i class="fa-solid fa-graduation-cap"></i> Education' %}
+        </section>
+
+        <section id="experience" class="page-section">
+            {% include widgets/experience_card.html section="experience" title='<i class="fa-solid fa-briefcase"></i> Experience' %}
+        </section>
+
 
         <section id="teaching" class="page-section">
             <div class="my-3 bg-white shadow-sm rounded-xl">
@@ -102,6 +103,12 @@ body_attr: >-
                 <div class="p-3 text-center visitor-map">
                     {{ site.data.profile.visitor_map }}
                 </div>
+                <script>
+                    // Keep the visitor map display-only: block the link to the public stats page
+                    document.querySelector(".visitor-map").addEventListener("click", function (event) {
+                        if (event.target.closest("a")) event.preventDefault();
+                    }, true);
+                </script>
             </div>
         </section>
         {% endif %}
