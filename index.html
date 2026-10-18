@@ -21,7 +21,7 @@ body_attr: >-
         {% assign count_news = site.news | size %}
         {% if count_news > 0 %}
         <section id="news" class="page-section">
-            {% include widgets/news_card.html limit=site.data.display.homepage.num_news %}
+            {% include widgets/news_card.html limit=count_news %}
         </section>
         {% endif %}
 

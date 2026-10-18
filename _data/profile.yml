@@ -139,6 +139,12 @@ teaching:
   date: Spring 2026 - Present
 
 projects:
+- title: Mobility-Aware Wildfire Smoke Exposure
+  date: 2025 - Present
+  description: >-
+    Estimating population exposure to wildfire smoke during the January 2025 Los Angeles wildfires by combining
+    PM2.5 sensor data with human mobility, comparing mobility-adjusted and residence-based exposure, and examining
+    how the gap relates to social vulnerability.
 - title: GeoAI Mapping of Informal Settlements
   date: 2025 - Present
   description: >-

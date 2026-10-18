@@ -205,3 +205,9 @@ div.lazy {
 .visitor-map a {
     cursor: default;
 }
+
+/* Homepage news: fixed-height scrolling list */
+.news-scroll {
+    max-height: 230px;
+    overflow-y: auto;
+}
