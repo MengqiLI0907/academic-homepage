@@ -211,3 +211,31 @@ div.lazy {
     max-height: 230px;
     overflow-y: auto;
 }
+
+/* Showcase photos: masonry-style columns that keep each photo's own aspect ratio */
+.photo-columns {
+    column-count: 3;
+    column-gap: 1rem;
+}
+
+.photo-item {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+    border-radius: 0.6rem;
+    overflow: hidden;
+}
+
+.photo-item img {
+    display: block;
+    transition: transform 0.3s;
+}
+
+.photo-item:hover img {
+    transform: scale(1.03);
+}
+
+@media (max-width: 767.98px) {
+    .photo-columns {
+        column-count: 2;
+    }
+}

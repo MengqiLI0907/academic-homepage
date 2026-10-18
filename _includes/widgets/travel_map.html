@@ -4,8 +4,8 @@
         <span><i class="fa-solid fa-earth-americas"></i> Places I Have Been</span>
         <span class="ml-auto">
             <span class="btn-group btn-group-sm mr-2" role="group">
-                <button type="button" class="btn btn-light active" data-travel-view="map">Map</button>
-                <button type="button" class="btn btn-light" data-travel-view="globe">Globe</button>
+                <button type="button" class="btn btn-light" data-travel-view="map">Map</button>
+                <button type="button" class="btn btn-light active" data-travel-view="globe">Globe</button>
             </span>
             <button type="button" class="btn btn-sm btn-light" id="travel-zoom-in" title="Zoom in"><i class="fa-solid fa-plus"></i></button>
             <button type="button" class="btn btn-sm btn-light" id="travel-zoom-out" title="Zoom out"><i class="fa-solid fa-minus"></i></button>
@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (mode === "map") svg.transition().call(zoom.transform, d3.zoomIdentity);
             else { globe.rotate([-60, -25]); draw(); startSpin(); }
         });
-        setMode("map");
+        setMode("globe");
     });
 });
 </script>

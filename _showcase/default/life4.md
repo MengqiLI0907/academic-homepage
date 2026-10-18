@@ -4,4 +4,4 @@ width: 4
 date: 2026-06-05 00:00:00 +0800
 group: Life
 ---
-<img data-src="{{ 'assets/images/etc/life4.jpg' | relative_url }}" class="lazy w-100 rounded-xl" src="{{ '/assets/images/empty_300x200.png' | relative_url }}" alt="Life photo 4">
+<img src="{{ 'assets/images/etc/life4.jpg' | relative_url }}" loading="lazy" class="w-100" alt="Life photo 4">
