@@ -97,11 +97,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         var sphere = g.append("path").datum({ type: "Sphere" }).attr("class", "travel-sphere").attr("fill", "url(#travel-ocean)");
-        var graticule = g.append("path").datum(d3.geoGraticule10()).attr("class", "travel-graticule");
-        var land = g.selectAll(".travel-country").data(countries).join("path").attr("class", "travel-country");
+        var graticule = g.append("path").datum(d3.geoGraticule10()).attr("class", "travel-graticule").attr("fill", "none").attr("stroke", "#c3d3e3");
+        var land = g.selectAll(".travel-country").data(countries).join("path").attr("class", "travel-country")
+            .attr("fill", "#e6e9ed").attr("stroke", "#ffffff");
         var filled = g.selectAll(".travel-region").data(regions).join("path")
             .attr("class", "travel-region visited")
-            .attr("fill", function (d) { return shade(d.group, d.rank); })
+            .attr("fill", function (d) { return shade(d.group, d.rank); }).attr("stroke", "#ffffff")
             .call(hover);
 
         function draw() {

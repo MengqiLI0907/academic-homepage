@@ -3,7 +3,7 @@
 <div class="sidebar sticky-top">
     <div class="sidebar-profile text-center mb-3">
         {% if profile.portrait_url %}
-        <img src="{{ profile.portrait_url | relative_url }}" class="sidebar-portrait rounded mb-2" alt="Portrait">
+        <img src="{{ profile.portrait_url | relative_url }}" class="sidebar-portrait rounded mb-2" style="max-width: 120px; width: 100%;" alt="Portrait">
         {% endif %}
         <div class="h5 mb-1">{{ profile.primary_name }}</div>
         <div class="small text-muted">
