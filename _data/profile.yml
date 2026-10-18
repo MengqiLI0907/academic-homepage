@@ -131,3 +131,46 @@ presentations:
   venue: Annual Meeting of the American Association of Geographers (AAG)
   location: Hawaii, USA
   year: 2024
+
+teaching:
+- course: GEO 481/506 Geographical Information Systems Lab
+  role: Teaching Assistant
+  institution: Department of Geography, University at Buffalo
+  date: Spring 2026 - Present
+
+projects:
+- title: GeoAI Mapping of Informal Settlements
+  date: 2025 - Present
+  description: >-
+    Mapping informal settlements across Manila, Jakarta, and Bangkok by fusing interpretable urban-form indicators
+    with remote-sensing foundation-model features, and examining their exposure to flood hazards.
+- title: Urban Mobility Resilience to Extreme Weather
+  date: 2024 - Present
+  description: >-
+    Quantifying how taxi, bike-share, and subway systems in New York City were disrupted by and recovered from
+    Hurricane Ida, and how transportation diversity relates to mobility resilience.
+- title: Causal Mechanisms of Mobility Resilience
+  date: 2026 - Present
+  description: >-
+    Moving beyond association to identify the causal drivers of urban mobility resilience under extreme weather.
+- title: Terrain Reconstruction with Deep Learning
+  date: 2021 - 2024
+  description: >-
+    Reconstructing high-resolution DEMs from terrain features with conditional GANs, and extracting check dam systems
+    from remote sensing images and DEMs on the Loess Plateau.
+
+skills:
+- category: Programming & ML
+  items: Python, SQL, R, PyTorch, TensorFlow, Scikit-learn
+- category: Data Science Tools
+  items: Pandas, NumPy, Stata, Jupyter, Git, Linux, PostgreSQL
+- category: Geospatial Technology
+  items: Google Earth Engine (GEE), ArcGIS Pro, QGIS
+
+# Visitor map embed code (e.g. from MapMyVisitors or ClustrMaps); the Footprint section stays hidden while empty.
+visitor_map: '<script type="text/javascript" id="mapmyvisitors" src="//mapmyvisitors.com/map.js?d=VyyzpJXEIP1yrHgWXycOq6Sikriw-bl0DKYk320sHH0&cl=ffffff&w=a"></script>'
+
+address: >-
+  Department of Geography<br/>
+  University at Buffalo, SUNY<br/>
+  Buffalo, NY 14261, USA

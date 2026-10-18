@@ -1,0 +1,159 @@
+{% assign travel = site.data.travel %}
+<div class="my-3 bg-white shadow-sm rounded-xl">
+    <h6 class="p-3 mb-0 border-bottom border-gray d-flex align-items-center">
+        <span><i class="fa-solid fa-earth-americas"></i> Places I Have Been</span>
+        <span class="ml-auto">
+            <span class="btn-group btn-group-sm mr-2" role="group">
+                <button type="button" class="btn btn-light active" data-travel-view="map">Map</button>
+                <button type="button" class="btn btn-light" data-travel-view="globe">Globe</button>
+            </span>
+            <button type="button" class="btn btn-sm btn-light" id="travel-zoom-in" title="Zoom in"><i class="fa-solid fa-plus"></i></button>
+            <button type="button" class="btn btn-sm btn-light" id="travel-zoom-out" title="Zoom out"><i class="fa-solid fa-minus"></i></button>
+            <button type="button" class="btn btn-sm btn-light" id="travel-zoom-reset" title="Reset"><i class="fa-solid fa-rotate-left"></i></button>
+        </span>
+    </h6>
+    <div class="p-3">
+        <div id="travel-map" class="travel-map"></div>
+        <div class="travel-legend small text-muted mt-2">
+            <span><i class="travel-swatch" style="background:#2f6db3"></i>United States</span>
+            <span><i class="travel-swatch" style="background:#7b5ea7"></i>Canada</span>
+            <span><i class="travel-swatch" style="background:#2a9d7f"></i>Europe</span>
+            <span><i class="travel-swatch" style="background:#d9622b"></i>China</span>
+            <span><i class="travel-swatch" style="background:#d4a017"></i>Southeast Asia</span>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    var visited = {
+        europe: {{ travel.europe_countries | map: "name" | jsonify }},
+        asia: {{ travel.asia_countries | map: "name" | jsonify }},
+        states: {{ travel.us_states | map: "name" | jsonify }}
+    };
+    // Colour family per group; members get alternating shades so neighbours stay distinguishable
+    var families = {
+        us: ["#1f4e8c", "#2f6db3", "#4f8fd1", "#78acdf"],
+        canada: ["#7b5ea7"],
+        europe: ["#1d7a63", "#2a9d7f", "#4dbf9c", "#7fd4b8"],
+        china: ["#b5441a", "#d9622b", "#ef8a4c", "#f5ad7a"],
+        asia: ["#d4a017"]
+    };
+    function shade(group, i) { var f = families[group]; return f[i % f.length]; }
+
+    var container = d3.select("#travel-map");
+    var width = 960, height = 470;
+    var svg = container.append("svg").attr("viewBox", "0 0 " + width + " " + height).attr("class", "w-100 h-auto");
+    var grad = svg.append("defs").append("radialGradient").attr("id", "travel-ocean").attr("cx", "40%").attr("cy", "35%").attr("r", "75%");
+    grad.append("stop").attr("offset", "0%").attr("stop-color", "#f3f8fc");
+    grad.append("stop").attr("offset", "100%").attr("stop-color", "#dce9f5");
+    var g = svg.append("g");
+    var tip = container.append("div").attr("class", "travel-tip").style("opacity", 0);
+
+    var flat = d3.geoEqualEarth().scale(190).translate([width / 2, height / 2 + 40]);
+    var globe = d3.geoOrthographic().scale(220).translate([width / 2, height / 2]).clipAngle(90).rotate([-60, -25]);
+    var projection = flat, mode = "map", spinning = null;
+    var path = d3.geoPath(projection);
+
+    function hover(sel) {
+        sel.on("mousemove", function (event, d) {
+            var r = container.node().getBoundingClientRect();
+            tip.style("opacity", 1).text(d.properties.name)
+               .style("left", (event.clientX - r.left + 12) + "px").style("top", (event.clientY - r.top + 12) + "px");
+        }).on("mouseleave", function () { tip.style("opacity", 0); });
+    }
+
+    Promise.all([
+        d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-50m.json"),
+        d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3.0.1/states-10m.json"),
+        d3.json("{{ '/assets/data/visited_regions.geojson' | relative_url }}")
+    ]).then(function (data) {
+        var countries = topojson.feature(data[0], data[0].objects.countries).features
+            .filter(function (d) { return d.properties.name !== "Antarctica"; });
+        // Fill only the European part of countries with overseas territories (e.g. French Guiana, Dutch Caribbean)
+        var europeOnly = ["France", "Netherlands", "Spain", "Portugal"];
+        function mainland(d) {
+            if (europeOnly.indexOf(d.properties.name) < 0 || d.geometry.type !== "MultiPolygon") return d;
+            return Object.assign({}, d, { geometry: { type: "MultiPolygon",
+                coordinates: d.geometry.coordinates.filter(function (poly) {
+                    var c = d3.geoCentroid({ type: "Polygon", coordinates: poly });
+                    return c[0] > -25 && c[0] < 50 && c[1] > 34 && c[1] < 72;
+                }) } });
+        }
+        var regions = [];
+        countries.forEach(function (d) {
+            var name = d.properties.name;
+            if (visited.europe.indexOf(name) >= 0) regions.push(Object.assign(mainland(d), { group: "europe", rank: visited.europe.indexOf(name) }));
+            if (visited.asia.indexOf(name) >= 0) regions.push(Object.assign({}, d, { group: "asia", rank: visited.asia.indexOf(name) }));
+        });
+        topojson.feature(data[1], data[1].objects.states).features.forEach(function (d) {
+            var i = visited.states.indexOf(d.properties.name);
+            if (i >= 0) regions.push(Object.assign(d, { group: "us", rank: i }));
+        });
+        data[2].features.forEach(function (d, i) {
+            regions.push(Object.assign(d, { group: d.properties.country === "Canada" ? "canada" : "china", rank: i }));
+        });
+
+        var sphere = g.append("path").datum({ type: "Sphere" }).attr("class", "travel-sphere").attr("fill", "url(#travel-ocean)");
+        var graticule = g.append("path").datum(d3.geoGraticule10()).attr("class", "travel-graticule");
+        var land = g.selectAll(".travel-country").data(countries).join("path").attr("class", "travel-country");
+        var filled = g.selectAll(".travel-region").data(regions).join("path")
+            .attr("class", "travel-region visited")
+            .attr("fill", function (d) { return shade(d.group, d.rank); })
+            .call(hover);
+
+        function draw() {
+            path = d3.geoPath(projection);
+            sphere.attr("d", path); graticule.attr("d", path); land.attr("d", path); filled.attr("d", path);
+        }
+
+        // Flat map: zoom and pan with the buttons or by dragging
+        var zoom = d3.zoom().scaleExtent([1, 40]).translateExtent([[0, 0], [width, height]])
+            .on("zoom", function (event) {
+                g.attr("transform", event.transform);
+                g.selectAll("path").attr("stroke-width", 0.5 / event.transform.k);
+            });
+        // Globe: drag to rotate, slow auto-spin
+        var drag = d3.drag().on("start", function () { stopSpin(); })
+            .on("drag", function (event) {
+                var r = projection.rotate(), k = 0.25;
+                projection.rotate([r[0] + event.dx * k, Math.max(-80, Math.min(80, r[1] - event.dy * k))]);
+                draw();
+            });
+        function startSpin() {
+            stopSpin();
+            spinning = d3.timer(function () {
+                var r = projection.rotate();
+                projection.rotate([r[0] + 0.15, r[1]]);
+                draw();
+            });
+        }
+        function stopSpin() { if (spinning) { spinning.stop(); spinning = null; } }
+
+        function setMode(m) {
+            mode = m;
+            d3.selectAll("[data-travel-view]").classed("active", function () { return this.getAttribute("data-travel-view") === m; });
+            d3.selectAll("#travel-zoom-in, #travel-zoom-out").style("display", m === "map" ? null : "none");
+            svg.on(".zoom", null).on(".drag", null);
+            g.attr("transform", null).selectAll("path").attr("stroke-width", null);
+            if (m === "map") {
+                stopSpin(); projection = flat;
+                svg.call(zoom).on("wheel.zoom", null).call(zoom.transform, d3.zoomIdentity);
+            } else {
+                projection = globe; svg.call(drag); startSpin();
+            }
+            draw();
+        }
+        d3.selectAll("[data-travel-view]").on("click", function () { setMode(this.getAttribute("data-travel-view")); });
+        d3.select("#travel-zoom-in").on("click", function () { svg.transition().call(zoom.scaleBy, 2); });
+        d3.select("#travel-zoom-out").on("click", function () { svg.transition().call(zoom.scaleBy, 0.5); });
+        d3.select("#travel-zoom-reset").on("click", function () {
+            if (mode === "map") svg.transition().call(zoom.transform, d3.zoomIdentity);
+            else { globe.rotate([-60, -25]); draw(); startSpin(); }
+        });
+        setMode("map");
+    });
+});
+</script>

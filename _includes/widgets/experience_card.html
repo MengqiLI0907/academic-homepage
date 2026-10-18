@@ -1,11 +1,10 @@
-{% assign timeline_sections = "education,experience" | split: "," %}
-{% for key in timeline_sections %}
+{% comment %}Renders one CV section card; include.section is one of education, experience, awards, service.{% endcomment %}
+{% assign key = include.section %}
 {% assign items = site.data.profile[key] %}
 {% if items %}
 <div class="my-3 bg-white shadow-sm rounded-xl">
-    <h6 class="p-3 mb-0 border-bottom border-gray">
-        {% if key == "education" %}<i class="fas fa-graduation-cap"></i> Education{% else %}<i class="fas fa-briefcase"></i> Experience{% endif %}
-    </h6>
+    <h6 class="p-3 mb-0 border-bottom border-gray">{{ include.title }}</h6>
+    {% if key == "education" or key == "experience" %}
     <ul class="list-unstyled px-3 pt-2 pb-1 mb-0">
         {% for item in items %}
         <li class="media mb-2">
@@ -25,18 +24,7 @@
         </li>
         {% endfor %}
     </ul>
-</div>
-{% endif %}
-{% endfor %}
-
-{% assign list_sections = "awards,service" | split: "," %}
-{% for key in list_sections %}
-{% assign items = site.data.profile[key] %}
-{% if items %}
-<div class="my-3 bg-white shadow-sm rounded-xl">
-    <h6 class="p-3 mb-0 border-bottom border-gray">
-        {% if key == "awards" %}<i class="fas fa-trophy"></i> Honors & Awards{% else %}<i class="fas fa-hands-helping"></i> Academic Service{% endif %}
-    </h6>
+    {% else %}
     <ul class="list-unstyled px-3 py-2 mb-0 small">
         {% for item in items %}
         <li class="d-flex my-1">
@@ -45,6 +33,6 @@
         </li>
         {% endfor %}
     </ul>
+    {% endif %}
 </div>
 {% endif %}
-{% endfor %}

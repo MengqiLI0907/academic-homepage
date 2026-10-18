@@ -1,0 +1,56 @@
+# Places shown as filled regions on the Showcase travel map.
+# US and China are filled by state/province, Canada by province, everything else by country.
+# Each group gets its own colour family on the map.
+us_states:
+- name: New York
+  note: Buffalo, New York City, Rochester, Syracuse
+- name: Massachusetts
+  note: Boston
+- name: Pennsylvania
+  note: Philadelphia, Pittsburgh
+- name: Virginia
+- name: District of Columbia
+  note: Washington, D.C.
+- name: California
+  note: San Francisco
+- name: Illinois
+  note: Chicago
+- name: Delaware
+
+china_provinces:
+- name: Beijing
+- name: Tianjin
+- name: Hebei
+- name: Shanghai
+- name: Jiangsu
+  note: Nanjing
+- name: Fujian
+  note: Xiamen
+- name: Shandong
+- name: Sichuan
+  note: Chengdu
+- name: Tibet
+- name: Gansu
+- name: Hong Kong
+
+canada_provinces:
+- name: British Columbia
+  note: Vancouver
+
+europe_countries:
+- name: Switzerland
+  note: Zurich
+- name: Liechtenstein
+- name: Germany
+- name: Netherlands
+- name: France
+- name: Spain
+- name: Portugal
+- name: Italy
+- name: Vatican
+- name: Sweden
+- name: Serbia
+- name: Turkey
+
+asia_countries:
+- name: Cambodia

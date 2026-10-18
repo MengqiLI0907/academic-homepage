@@ -3,40 +3,125 @@ layout: default
 title : Homepage
 navbar_title: Home
 container_class: container-xl
+body_attr: >-
+  data-spy="scroll" data-target="#sidebar-nav" data-offset="120"
 ---
 <div class="row">
-    <!-- Sticky mini profile card on wide screens -->
+    <!-- Section navigation on wide screens -->
     <div class="col-lg-3 d-none d-lg-block">
-        {% include widgets/profile_card_mini.html %}
+        {% include widgets/sidebar_nav.html %}
     </div>
 
     <div class="col-lg-9">
-        <!-- Full profile card on narrow screens, bio-only card on wide screens -->
-        <div class="d-lg-none">
-            {% include widgets/profile_card.html %}
-        </div>
-        <div class="d-none d-lg-block">
-            {% include widgets/profile_card_bio_only.html %}
-        </div>
+        <section id="about" class="page-section">
+            <div class="d-lg-none">{% include widgets/profile_card.html %}</div>
+            <div class="d-none d-lg-block">{% include widgets/profile_card_bio_only.html %}</div>
+        </section>
 
-        {% if site.data.display.homepage.show_news %}
-            {% assign count_news = site.news | size %}
-            {% if count_news > 0 %}
-                {% include widgets/news_card.html limit=site.data.display.homepage.num_news %}
-            {% endif %}
+        {% assign count_news = site.news | size %}
+        {% if count_news > 0 %}
+        <section id="news" class="page-section">
+            {% include widgets/news_card.html limit=site.data.display.homepage.num_news %}
+        </section>
         {% endif %}
 
-        {% if site.data.display.homepage.show_selected_publications %}
+        <section id="education" class="page-section">
+            {% include widgets/experience_card.html section="education" title='<i class="fa-solid fa-graduation-cap"></i> Education' %}
+        </section>
+
+        <section id="experience" class="page-section">
+            {% include widgets/experience_card.html section="experience" title='<i class="fa-solid fa-briefcase"></i> Experience' %}
+        </section>
+
+        <section id="publications" class="page-section">
             {% assign pubs = site.publications | sort: "date" | reverse | where: "selected", true %}
             {%
                 include widgets/publication_card.html
                 publications=pubs
-                title='<i class="fas fa-star"></i> Selected Publications'
+                title='<i class="fa-regular fa-file-lines"></i> Selected Publications'
             %}
+        </section>
+
+        <section id="teaching" class="page-section">
+            <div class="my-3 bg-white shadow-sm rounded-xl">
+                <h6 class="p-3 mb-0 border-bottom border-gray"><i class="fa-solid fa-chalkboard-user"></i> Teaching</h6>
+                <ul class="list-unstyled px-3 py-2 mb-0">
+                    {% for item in site.data.profile.teaching %}
+                    <li class="my-1">
+                        <div class="d-flex">
+                            <div class="font-weight-bold">{{ item.course }}</div>
+                            <div class="ml-auto pl-2 no-break small text-muted"><em>{{ item.date }}</em></div>
+                        </div>
+                        <div class="small text-muted">{{ item.role }}, {{ item.institution }}</div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+
+        <section id="projects" class="page-section">
+            <div class="my-3 bg-white shadow-sm rounded-xl">
+                <h6 class="p-3 mb-0 border-bottom border-gray"><i class="fa-solid fa-earth-americas"></i> Projects</h6>
+                <ul class="list-unstyled px-3 py-2 mb-0">
+                    {% for item in site.data.profile.projects %}
+                    <li class="my-2">
+                        <div class="d-flex">
+                            <div class="font-weight-bold">{{ item.title }}</div>
+                            <div class="ml-auto pl-2 no-break small text-muted"><em>{{ item.date }}</em></div>
+                        </div>
+                        <div class="small text-muted">{{ item.description }}</div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+
+        <section id="awards" class="page-section">
+            {% include widgets/experience_card.html section="awards" title='<i class="fa-solid fa-award"></i> Honors &amp; Awards' %}
+        </section>
+
+        <section id="service" class="page-section">
+            {% include widgets/experience_card.html section="service" title='<i class="fa-regular fa-handshake"></i> Academic Service' %}
+        </section>
+
+        <section id="skills" class="page-section">
+            <div class="my-3 bg-white shadow-sm rounded-xl">
+                <h6 class="p-3 mb-0 border-bottom border-gray"><i class="fa-solid fa-code"></i> Skills</h6>
+                <ul class="list-unstyled px-3 py-2 mb-0 small">
+                    {% for item in site.data.profile.skills %}
+                    <li class="my-1"><span class="font-weight-bold">{{ item.category }}:</span> {{ item.items }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+
+        {% if site.data.profile.visitor_map != "" %}
+        <section id="footprint" class="page-section">
+            <div class="my-3 bg-white shadow-sm rounded-xl">
+                <h6 class="p-3 mb-0 border-bottom border-gray"><i class="fa-solid fa-map-location-dot"></i> Footprint</h6>
+                <div class="p-3 text-center visitor-map">
+                    {{ site.data.profile.visitor_map }}
+                </div>
+            </div>
+        </section>
         {% endif %}
 
-        {% if site.data.display.homepage.show_experience %}
-            {% include widgets/experience_card.html %}
-        {% endif %}
+        <section id="contact" class="page-section">
+            <div class="my-3 bg-white shadow-sm rounded-xl">
+                <h6 class="p-3 mb-0 border-bottom border-gray"><i class="fa-regular fa-envelope"></i> Contact</h6>
+                <div class="px-3 py-2 small">
+                    <p class="mb-2">{{ site.data.profile.address }}</p>
+                    <p class="mb-1">
+                        <i class="fa-regular fa-envelope fa-fw"></i>
+                        <a class="email-text" href="mailto:{{ site.data.profile.email | encode_email }}">{{ site.data.profile.email | replace: "@", "(at)" }}</a>
+                    </p>
+                    <p class="mb-2">
+                        <a class="pr-3 no-break" target="_blank" href="https://scholar.google.com/citations?user={{ site.data.profile.gscholar }}"><i class="fab fa-google-scholar"></i> Google Scholar</a>
+                        <a class="pr-3 no-break" target="_blank" href="https://github.com/{{ site.data.profile.github }}"><i class="fab fa-github"></i> GitHub</a>
+                        <a class="pr-3 no-break" target="_blank" href="https://www.linkedin.com/in/{{ site.data.profile.linkedin }}"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    </p>
+                </div>
+            </div>
+        </section>
     </div>
 </div>

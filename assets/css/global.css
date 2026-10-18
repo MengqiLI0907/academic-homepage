@@ -91,3 +91,108 @@ div.lazy {
 .email-text {
     font-family: Source Code Pro, monospace;
 }
+
+/* Homepage section navigation */
+.sidebar {
+    top: 80px;
+    max-height: calc(100vh - 90px);
+    overflow-y: auto;
+}
+
+.sidebar-portrait {
+    max-width: 150px;
+    width: 100%;
+}
+
+.sidebar-nav .nav-link {
+    color: #6c757d;
+    font-size: 1rem;
+    padding: 0.4rem 0.9rem;
+    margin-bottom: 0.1rem;
+    border-radius: 0.6rem;
+}
+
+.sidebar-nav .nav-link i {
+    margin-right: 0.45rem;
+    color: #8a9099;
+}
+
+.sidebar-nav .nav-link:hover {
+    color: #212529;
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.sidebar-nav .nav-link.active {
+    color: #212529;
+    font-weight: 700;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-nav .nav-link.active i {
+    color: #212529;
+}
+
+.page-section {
+    scroll-margin-top: 80px;
+}
+
+/* Showcase travel map */
+.travel-map {
+    position: relative;
+}
+
+.travel-map svg {
+    cursor: grab;
+}
+
+.travel-sphere {
+    stroke: #c9d6e3;
+    stroke-width: 0.6;
+}
+
+.travel-graticule {
+    fill: none;
+    stroke: #c3d3e3;
+    stroke-width: 0.4;
+    stroke-opacity: 0.6;
+}
+
+.travel-country {
+    fill: #e6e9ed;
+    stroke: #ffffff;
+    stroke-width: 0.5;
+}
+
+.travel-map .visited {
+    stroke: #ffffff;
+    stroke-width: 0.5;
+    transition: opacity 0.15s;
+}
+
+.travel-map .visited:hover {
+    opacity: 0.7;
+}
+
+.travel-tip {
+    position: absolute;
+    pointer-events: none;
+    background: rgba(33, 37, 41, 0.85);
+    color: #fff;
+    font-size: 0.8rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.travel-legend span {
+    margin-right: 1rem;
+    white-space: nowrap;
+}
+
+.travel-swatch {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    margin-right: 4px;
+}

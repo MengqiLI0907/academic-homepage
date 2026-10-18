@@ -1,0 +1,27 @@
+{% assign profile = site.data.profile %}
+{% assign nav_items = "about:fa-regular fa-user:About,news:fa-regular fa-newspaper:News,education:fa-solid fa-graduation-cap:Education,experience:fa-solid fa-briefcase:Experience,publications:fa-regular fa-file-lines:Publications,teaching:fa-solid fa-chalkboard-user:Teaching,projects:fa-solid fa-earth-americas:Projects,awards:fa-solid fa-award:Awards,service:fa-regular fa-handshake:Service,skills:fa-solid fa-code:Skills,footprint:fa-solid fa-map-location-dot:Footprint,contact:fa-regular fa-envelope:Contact" | split: "," %}
+<div class="sidebar sticky-top">
+    <div class="sidebar-profile text-center mb-3">
+        {% if profile.portrait_url %}
+        <img src="{{ profile.portrait_url | relative_url }}" class="sidebar-portrait rounded mb-2" alt="Portrait">
+        {% endif %}
+        <div class="h5 mb-1">{{ profile.primary_name }}</div>
+        <div class="small text-muted">
+            {% for position in profile.positions %}{{ position.name }}<br/>{% endfor %}
+        </div>
+        <div class="h5 mt-2 mb-0">
+            <a class="px-1" href="mailto:{{ profile.email | encode_email }}" title="Email"><i class="fa-regular fa-envelope"></i></a>
+            {% if profile.gscholar %}<a class="px-1" target="_blank" href="https://scholar.google.com/citations?user={{ profile.gscholar }}" title="Google Scholar"><i class="fab fa-google-scholar"></i></a>{% endif %}
+            {% if profile.github %}<a class="px-1" target="_blank" href="https://github.com/{{ profile.github }}" title="GitHub"><i class="fab fa-github"></i></a>{% endif %}
+            {% if profile.linkedin %}<a class="px-1" target="_blank" href="https://www.linkedin.com/in/{{ profile.linkedin }}" title="LinkedIn"><i class="fab fa-linkedin"></i></a>{% endif %}
+            {% if profile.cv_link %}<a class="px-1" target="_blank" href="{{ profile.cv_link | relative_url }}" title="CV"><i class="fa-regular fa-file-pdf"></i></a>{% endif %}
+        </div>
+    </div>
+    <nav id="sidebar-nav" class="nav flex-column sidebar-nav">
+        {% for entry in nav_items %}
+        {% assign parts = entry | split: ":" %}
+        {% if parts[0] == "footprint" and profile.visitor_map == "" %}{% continue %}{% endif %}
+        <a class="nav-link" href="#{{ parts[0] }}"><i class="{{ parts[1] }} fa-fw"></i> {{ parts[2] }}</a>
+        {% endfor %}
+    </nav>
+</div>

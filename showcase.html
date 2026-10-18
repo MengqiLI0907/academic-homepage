@@ -5,6 +5,8 @@ navbar_title: Showcase
 container_class: container-xl
 ---
 
+{% include widgets/travel_map.html %}
+
 {% assign cards_by_group = site.showcase | sort: "date" | reverse | where: "show", true | group_by_exp: "item", "item.group" %}
 
 {% for group in cards_by_group %}
