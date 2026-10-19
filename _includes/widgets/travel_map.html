@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (i >= 0) regions.push(Object.assign(d, { group: "us", rank: shadeIndex == null ? i : shadeIndex }));
         });
         data[2].features.forEach(function (d, i) {
-            regions.push(Object.assign(d, { group: d.properties.country === "Canada" ? "canada" : "china", rank: i }));
+            regions.push(Object.assign(d, { group: d.properties.country === "Canada" ? "canada" : "china", rank: d.properties.shade == null ? i : d.properties.shade }));
         });
 
         var sphere = g.append("path").datum({ type: "Sphere" }).attr("class", "travel-sphere").attr("fill", "url(#travel-ocean)");

@@ -42,6 +42,8 @@ china_provinces:
 - name: Tibet
 - name: Gansu
 - name: Hong Kong
+- name: Inner Mongolia
+- name: Shaanxi
 
 canada_provinces:
 - name: British Columbia
