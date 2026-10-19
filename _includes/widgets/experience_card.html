@@ -24,6 +24,21 @@
         </li>
         {% endfor %}
     </ul>
+    {% elsif key == "service" %}
+    {% assign service_groups = items | group_by: "group" %}
+    <div class="px-3 py-2 small">
+        {% for g in service_groups %}
+        <div class="font-weight-bold text-muted text-uppercase mt-1 mb-1" style="font-size: 0.72rem; letter-spacing: 0.05em;">{{ g.name }}</div>
+        <ul class="list-unstyled mb-2">
+            {% for item in g.items %}
+            <li class="d-flex my-1">
+                <div>{{ item.name }}</div>
+                <div class="ml-auto pl-2 no-break text-muted"><em>{{ item.date }}</em></div>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endfor %}
+    </div>
     {% else %}
     <ul class="list-unstyled px-3 py-2 mb-0 small">
         {% for item in items %}

@@ -105,15 +105,28 @@ awards:
 - name: Silver Award, Esri-Cup College Students GIS Software Development Contest
   date: Oct. 2021
 
+# Each entry belongs to a group; the Service card shows one sub-heading per group, in this order.
 service:
-- name: >-
-    Peer Reviewer, <em>Journal of Planning Literature</em>
+- group: Reviewer
+  name: >-
+    <em>Journal of Planning Literature</em>
   date: 2026
-- name: >-
-    Peer Reviewer, <em>International Journal of Applied Earth Observation and Geoinformation</em>
+- group: Reviewer
+  name: >-
+    <em>International Journal of Applied Earth Observation and Geoinformation</em>
   date: 2026
-- name: Treasurer, Geography Graduate Student Association, University at Buffalo
+- group: College Service
+  name: Treasurer, Geography Graduate Student Association, University at Buffalo
   date: 2026 - Present
+- group: College Service
+  name: Captain, NUIST Debate Team
+  date: 2020 - 2021
+- group: College Service
+  name: Member, NUIST Debate Team
+  date: 2020 - 2023
+- group: College Service
+  name: Head of Publicity Department, NUIST
+  date: 2020 - 2021
 
 presentations:
 - authors: <strong>Li, M.</strong>, Meng, P., <a href="https://cfu1.github.io/" target="_blank">Fu, C.</a>
