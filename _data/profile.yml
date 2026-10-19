@@ -125,7 +125,7 @@ service:
   name: Member, NUIST Debate Team
   date: 2020 - 2023
 - group: College Service
-  name: Head of Publicity Department, NUIST
+  name: Head of Publicity Department, NUIST Student Union
   date: 2020 - 2021
 
 presentations:
@@ -184,7 +184,7 @@ skills:
 - category: Geospatial Data
   items: Satellite remote sensing, human mobility data, OpenStreetMap, census and social vulnerability data
 - category: Programming
-  items: Python, R, SQL
+  items: Python, R, SQL, PyTorch, TensorFlow, Keras
 - category: Platforms
   items: Google Earth Engine, ArcGIS Pro, QGIS, Git, Linux
 
