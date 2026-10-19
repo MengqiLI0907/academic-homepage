@@ -174,7 +174,7 @@ skills:
   items: Google Earth Engine (GEE), ArcGIS Pro, QGIS
 
 # Visitor map embed code (e.g. from MapMyVisitors or ClustrMaps); the Footprint section stays hidden while empty.
-visitor_map: '<script type="text/javascript" id="mapmyvisitors" src="//mapmyvisitors.com/map.js?d=VyyzpJXEIP1yrHgWXycOq6Sikriw-bl0DKYk320sHH0&cl=ffffff&w=a"></script>'
+visitor_map: '<script type="text/javascript" id="mapmyvisitors" src="//mapmyvisitors.com/map.js?d=VyyzpJXEIP1yrHgWXycOq6Sikriw-bl0DKYk320sHH0&w=a&co=f5f5f7&cl=d2d2d7&ct=1d1d1f&cmo=0071e3&cmn=ff9f0a"></script>'
 
 address: >-
   Department of Geography<br/>

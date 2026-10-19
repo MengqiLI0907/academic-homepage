@@ -445,3 +445,14 @@ div.lazy {
         margin-bottom: 0.75rem;
     }
 }
+
+/* Visitor map: rounded, borderless, matches the site palette */
+.visitor-map #mapmyvisitors-widget {
+    display: block;
+    margin: 0 auto;
+}
+
+.visitor-map .mapmyvisitors-map-container {
+    border-radius: 18px;
+    overflow: hidden;
+}
