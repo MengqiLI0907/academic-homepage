@@ -179,12 +179,14 @@ projects:
     from remote sensing images and DEMs on the Loess Plateau.
 
 skills:
-- category: Programming & ML
-  items: Python, SQL, R, PyTorch, TensorFlow, Scikit-learn
-- category: Data Science Tools
-  items: Pandas, NumPy, Stata, Jupyter, Git, Linux, PostgreSQL
-- category: Geospatial Technology
-  items: Google Earth Engine (GEE), ArcGIS Pro, QGIS
+- category: Methods
+  items: GeoAI and deep learning; spatial statistics; causal inference and panel econometrics; time-series forecasting
+- category: Geospatial Data
+  items: Satellite remote sensing, human mobility data, OpenStreetMap, census and social vulnerability data
+- category: Programming
+  items: Python, R, SQL
+- category: Platforms
+  items: Google Earth Engine, ArcGIS Pro, QGIS, Git, Linux
 
 # Visitor map embed code (e.g. from MapMyVisitors or ClustrMaps); the Footprint section stays hidden while empty.
 visitor_map: '<script type="text/javascript" id="mapmyvisitors" src="//mapmyvisitors.com/map.js?d=VyyzpJXEIP1yrHgWXycOq6Sikriw-bl0DKYk320sHH0&w=a&co=f5f5f7&cl=d2d2d7&ct=1d1d1f&cmo=0071e3&cmn=ff9f0a"></script>'
