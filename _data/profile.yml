@@ -44,7 +44,7 @@ education:
   logo: /assets/images/badges/uzh_logo.png
   position: >-
     M.S. in Geographic Information Science and Systems <br/>
-    Advisor: Prof. Dr. Cheng Fu, Prof. Dr. Robert Weibel <br/>
+    Advisor: <a href="https://mobility.dsi.uzh.ch/member/cheng-fu/" target="_blank">Prof. Dr. Cheng Fu</a>, <a href="https://user.geo.uzh.ch/rweibe/" target="_blank">Prof. Dr. Robert Weibel</a> <br/>
     GPA: Summa cum laude
   date: Sep. 2023 - Jun. 2025
 
@@ -116,12 +116,12 @@ service:
   date: 2026 - Present
 
 presentations:
-- authors: <strong>Li, M.</strong>, Meng, P., Fu, C.
+- authors: <strong>Li, M.</strong>, Meng, P., <a href="https://mobility.dsi.uzh.ch/member/cheng-fu/" target="_blank">Fu, C.</a>
   title: "When Association Is Not Enough: Explore Causal Mechanisms of Urban Mobility Resilience under Extreme Weather"
   venue: The 20th International Conference on Location Based Services (LBS 2026)
   location: Nanjing, China
   year: 2026
-- authors: <strong>Li, M.</strong>, Weibel, R., Hu, Y., Fu, C.
+- authors: <strong>Li, M.</strong>, <a href="https://user.geo.uzh.ch/rweibe/" target="_blank">Weibel, R.</a>, <a href="https://www.acsu.buffalo.edu/~yhu42/" target="_blank">Hu, Y.</a>, <a href="https://mobility.dsi.uzh.ch/member/cheng-fu/" target="_blank">Fu, C.</a>
   title: "Understanding the Resilience of Different Urban Mobility Systems to Extreme Weather Events: A Case Study of Hurricane Ida"
   venue: Annual Meeting of the American Association of Geographers (AAG)
   location: San Francisco, USA
