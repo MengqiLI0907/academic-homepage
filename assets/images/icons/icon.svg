@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="92 60 216 216">
+  <defs>
+    <clipPath id="eyeL"><path d="M156 167 C164 161 186 159 196 165 C192 177 168 180 156 167 Z"/></clipPath>
+    <clipPath id="eyeR"><path d="M210 165 C222 159 242 161 250 167 C242 179 218 178 210 165 Z"/></clipPath>
+    <path id="arc" d="M 62 236 A 146 146 0 0 0 338 236"/>
+  </defs>
+  <clipPath id="disc"><circle cx="200" cy="168" r="102"/></clipPath><circle cx="200" cy="168" r="108" fill="#fdf6ec"/>
+  <circle cx="200" cy="168" r="104" fill="none" stroke="#b38f3f" stroke-width="3" stroke-dasharray="0.1 6.5" stroke-linecap="round"/>
+
+  <g clip-path="url(#disc)"><g fill="none" stroke="#141210" stroke-linecap="round" stroke-linejoin="round" transform="translate(200 176) scale(0.86) translate(-200 -176)">
+    <!-- hair: outer silhouette falling to the shoulders -->
+    <path d="M128 168 C120 108 156 72 204 72 C252 72 286 106 278 166 C276 196 288 222 300 238 C284 246 266 244 252 236" stroke-width="3.4"/>
+    <path d="M128 168 C130 198 118 224 104 240 C120 248 140 246 154 236" stroke-width="3.4"/>
+    <!-- hair strands -->
+    <path d="M270 150 C274 186 282 210 292 226" stroke-width="2"/>
+    <path d="M136 152 C134 184 126 208 114 226" stroke-width="2"/>
+    <!-- side-swept fringe -->
+    <path d="M146 156 C150 128 172 110 200 106 C182 122 170 138 166 152" stroke-width="3"/>
+    <path d="M200 106 C226 108 250 120 262 142" stroke-width="3"/>
+    <path d="M206 104 C204 98 204 94 206 88" stroke-width="2.2"/>
+
+    <!-- outdoor wraparound sport glasses resting on the head -->
+    <path d="M150 96 C144 100 140 106 136 112 M254 96 C260 100 264 106 268 112" stroke-width="2.6"/>
+    <path d="M150 92 C168 77 236 77 254 92 C254 103 241 107 226 105 C214 103 208 97 202 97 C196 97 190 103 178 105 C163 107 150 103 150 92 Z" stroke-width="3" fill="#141210"/>
+    <path d="M163 89 C175 84 186 83 194 84" stroke="#fdf6ec" stroke-width="2.2" opacity="0.7"/>
+
+    <!-- face -->
+    <path d="M146 156 C142 202 168 236 202 240 C236 236 262 202 256 156" stroke-width="3.2" fill="#fdf6ec"/>
+    <!-- ears -->
+    <path d="M148 168 C138 166 136 182 148 188" stroke-width="2.6"/>
+    <path d="M254 168 C264 166 266 182 254 188" stroke-width="2.6"/>
+
+    <!-- brows: thick, tapered, a little raised -->
+    <path d="M158 150 C168 140 186 137 197 143 C186 141 172 144 160 153 Z" stroke-width="2.2" fill="#141210"/>
+    <path d="M209 143 C222 137 240 139 250 150 C240 144 224 141 209 143 Z" stroke-width="2.2" fill="#141210"/>
+    <!-- relaxed, half-lidded eyes glancing to the side: the lid covers the top of the iris -->
+    <path d="M156 167 C164 161 186 159 196 165 C192 177 168 180 156 167 Z" stroke-width="1.8" fill="#fff"/>
+    <path d="M210 165 C222 159 242 161 250 167 C242 179 218 178 210 165 Z" stroke-width="1.8" fill="#fff"/>
+    <g clip-path="url(#eyeL)" stroke="none"><circle cx="186" cy="166" r="10" fill="#141210"/><circle cx="182.5" cy="169" r="2.4" fill="#fff"/></g>
+    <g clip-path="url(#eyeR)" stroke="none"><circle cx="240" cy="167" r="10" fill="#141210"/><circle cx="236.5" cy="170" r="2.4" fill="#fff"/></g>
+    <path d="M154 167 C164 160 186 158 198 165" stroke-width="5.2"/>
+    <path d="M208 165 C220 158 242 160 252 167" stroke-width="5.2"/>
+    <!-- a few thick lashes at the outer corners -->
+    <path d="M155 167 L147 164 M157 163 L151 157 M251 167 L259 164 M249 163 L255 157" stroke-width="2.8"/>
+    <!-- tiny curled nose -->
+    <path d="M205 185 C201 191 203 196 208 196 C211 196 212 193 210 191" stroke-width="2.4"/>
+    <!-- small smug smile, lifted on one side, with a dimple -->
+    <path d="M186 214 C196 220 212 219 224 209" stroke-width="3"/>
+    <path d="M186 214 C184 213 183 211 183 209" stroke-width="2.2"/>
+    <path d="M227 207 C230 209 231 212 230 215" stroke-width="2.2"/>
+
+    <!-- neck and collared shirt -->
+    <path d="M186 238 L186 256 M216 238 L216 256" stroke-width="3"/>
+    <path d="M118 300 C126 272 154 258 186 256 L201 276 L216 256 C248 258 276 272 284 300" stroke-width="3.2"/>
+    <path d="M186 256 L178 272 L196 282 L201 276 M216 256 L224 272 L206 282 L201 276" stroke-width="2.6"/>
+    <path d="M201 282 L201 300" stroke-width="2.2"/>
+    <circle cx="201" cy="292" r="1.8" fill="#141210" stroke="none"/>
+  </g>
+
+  
+
+  <!-- name along the bottom arc -->
+  
+</g></svg>

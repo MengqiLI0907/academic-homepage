@@ -18,11 +18,9 @@
     <div class="apple-tile">
         <div id="travel-map" class="travel-map"></div>
         <div class="travel-legend">
-            <span><i class="travel-swatch" style="background:#2f6db3"></i>United States</span>
-            <span><i class="travel-swatch" style="background:#7b5ea7"></i>Canada</span>
+            <span><i class="travel-swatch" style="background:#2f6db3"></i>North America</span>
             <span><i class="travel-swatch" style="background:#2a9d7f"></i>Europe</span>
-            <span><i class="travel-swatch" style="background:#d9622b"></i>China</span>
-            <span><i class="travel-swatch" style="background:#d4a017"></i>Other Asia</span>
+            <span><i class="travel-swatch" style="background:#d9622b"></i>Asia</span>
         </div>
     </div>
 </section>
@@ -37,15 +35,14 @@ document.addEventListener("DOMContentLoaded", function () {
         states: {{ travel.us_states | map: "name" | jsonify }},
         stateShades: {{ travel.us_states | map: "shade" | jsonify }}
     };
-    // Colour family per group; members get alternating shades so neighbours stay distinguishable
+    // One colour family per continent; members get alternating shades so neighbours stay distinguishable
     var families = {
-        us: ["#1f4e8c", "#2f6db3", "#4f8fd1", "#78acdf"],
-        canada: ["#7b5ea7"],
+        northAmerica: ["#1f4e8c", "#2f6db3", "#4f8fd1", "#78acdf"],
         europe: ["#1d7a63", "#2a9d7f", "#4dbf9c", "#7fd4b8"],
-        china: ["#b5441a", "#d9622b", "#ef8a4c", "#f5ad7a"],
-        asia: ["#d4a017"]
+        asia: ["#b5441a", "#d9622b", "#ef8a4c", "#f5ad7a"]
     };
-    function shade(group, i) { var f = families[group]; return f[i % f.length]; }
+    var continentOf = { us: "northAmerica", canada: "northAmerica", europe: "europe", china: "asia", asia: "asia" };
+    function shade(group, i) { var f = families[continentOf[group]]; return f[i % f.length]; }
 
     var container = d3.select("#travel-map");
     var width = 960, height = 470;
