@@ -44,6 +44,9 @@ china_provinces:
 - name: Hong Kong
 - name: Inner Mongolia
 - name: Shaanxi
+- name: Henan
+- name: Hubei
+- name: Qinghai
 
 canada_provinces:
 - name: British Columbia
