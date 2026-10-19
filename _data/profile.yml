@@ -24,7 +24,7 @@ short_bio: >-
   <p>
     I am broadly interested in leveraging machine learning and geospatial data to understand human-environment interactions,
     with a focus on wildfire smoke exposure modeling, informal settlement mapping, and disaster impact assessment.
-    My M.S. research at the University of Zurich examined the resilience of different urban mobility systems to extreme weather events,
+    My M.S. research at the Universität Zürich examined the resilience of different urban mobility systems to extreme weather events,
     using Hurricane Ida as a case study.
   </p>
 
@@ -40,7 +40,7 @@ education:
     Advisor: Prof. Dr. Yingjie Hu
   date: Aug. 2025 - Present
 
-- name: University of Zurich
+- name: Universität Zürich
   logo: /assets/images/badges/uzh_logo.png
   position: >-
     M.S. in Geographic Information Science and Systems <br/>
