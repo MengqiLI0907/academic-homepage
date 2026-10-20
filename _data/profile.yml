@@ -98,12 +98,33 @@ experience:
   date: Jun. 2021 - Sep. 2022
 
 awards:
-- name: Outstanding Graduates
+- name: Outstanding Graduate, NUIST
   date: Jun. 2023
-- name: First Class Scholarship
-  date: 2020-2023
-- name: Silver Award, Esri-Cup College Students GIS Software Development Contest
+- name: Software Copyright Registrations (2), National Copyright Administration of China
+  date: 2022
+- name: >-
+    Second Prize (Story Map Track), Esri Cup Chinese College Students GIS Software Development Contest
+  date: Nov. 2021
+- name: >-
+    Excellence Award, National Geographic Information Technology and Application Skills Competition
   date: Oct. 2021
+- name: >-
+    Outstanding Participant, Jiangsu Graduate Summer School on Geographic Big Data and Spatial Intelligence
+  date: Aug. 2021
+- name: Third Prize, 18th May Day Mathematical Contest in Modeling
+  date: Jun. 2021
+- name: >-
+    Provincial-Level Project, Jiangsu Innovation and Entrepreneurship Training Program for College Students
+  date: 2021 - 2022
+- name: >-
+    Third Prize (Provincial), 6th LSCAT Cup Jiangsu Translation Competition (Chinese&ndash;English)
+  date: Jun. 2020
+- name: Best Debater, South Surveying &amp; Mapping Cup Debate Invitational
+  date: Dec. 2019
+- name: First-Class Scholarship, NUIST (4 times)
+  date: 2019 - 2023
+- name: Merit Student, NUIST (4 times)
+  date: 2019 - 2023
 
 # Each entry belongs to a group; the Service card shows one sub-heading per group, in this order.
 service:
@@ -125,7 +146,7 @@ service:
   name: Member, NUIST Debate Team
   date: 2020 - 2023
 - group: College Service
-  name: Head of Publicity Department, NUIST Student Union
+  name: Deputy Head of Publicity Department, NUIST Student Union
   date: 2020 - 2021
 
 presentations:
