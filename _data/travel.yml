@@ -47,6 +47,8 @@ china_provinces:
 - name: Henan
 - name: Hubei
 - name: Qinghai
+- name: Guangdong
+  note: Guangzhou
 
 canada_provinces:
 - name: British Columbia
