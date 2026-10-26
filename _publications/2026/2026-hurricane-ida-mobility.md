@@ -10,6 +10,5 @@ abstract: >-
 authors:
   - Mengqi Li
   - R. Weibel
-  - Yingjie Hu
   - C. Fu
 ---
